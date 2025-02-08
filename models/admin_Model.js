@@ -1,6 +1,4 @@
-const e = require('express');
 const mongoose = require('mongoose');
-const { create } = require('./organizaion_Model');
 
 
 const adminSchema = new mongoose.Schema({

@@ -4,10 +4,19 @@
 // All Imports
 const express = require('express');
 const app = express();
+const connectDB = require('./config/mongooseConfig');
 
+
+
+
+// All Configurations
+connectDB();
 
 
 // All Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 
 // All Routes
