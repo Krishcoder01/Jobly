@@ -10,10 +10,7 @@ const contactPersonModel = require('../models/contactPerson_model');
 
 const verifyOrganizationController = async (req, res) => {
     try {
-        console.log("aya");
-        console.log(req.params.id)
         const organization = await organizationModel.findOne({contactPerson : req.params.id});
-        console.log(organization)
 
         if (!organization) return res.status(404).json({ message: "Organization not found" });
 
