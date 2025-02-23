@@ -8,6 +8,7 @@ const connectDB = require('./config/mongooseConfig');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const organisationRoutes = require('./routes/organizationRoutes');
 
 
 
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 //handels all authentication routes like SendOtp , verify otp , resend otp
 app.use('/auth' , authRoutes);  
 app.use('/api/user', userRoutes )
+app.use('/api/organization/' , organisationRoutes)
 
 
 
