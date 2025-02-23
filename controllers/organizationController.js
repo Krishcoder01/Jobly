@@ -56,7 +56,7 @@ const verifyOtpController = async (req, res) => {
 
         const token = jwt.sign({ contactPersonId : contactPersonId  , email : contactPerson.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-        res.status(200).json({ message: "Signup successful", organizationId: organization._id });
+        res.status(200).json({ message: "Signup successful", organizationId: organization._id, token : token });
 
 
     } catch (error) {
@@ -69,6 +69,8 @@ const getOrganizationDetails = async (req, res) => {
     try {
         const { organizationName, description, city, industry, numberOfEmployees, logo } = req.body;
 
+        console.log(organizationName, description, city, industry, numberOfEmployees, logo)
+
         // Create or Update Organization Details
         const organizationDetails = await organizationDetails_Model.create({
             organizationName,
@@ -78,6 +80,9 @@ const getOrganizationDetails = async (req, res) => {
             numberOfEmployees,
             logo
         });
+
+        console.log(organizationDetails);
+        console.log(req.user.contactPersonId);
 
         // Link to Organization
         await organizationModel.findOneAndUpdate(
@@ -95,7 +100,7 @@ const getOrganizationDocuments = async (req, res) => {
     try {
         const {companyDocuments, socialMediaLinks, website} = req.body;
 
-        const organization = await organizationDetails_Model.findOne({ contactPerson : req.user.contactPersonId });
+        const organization = await organizationModel.findOne({ contactPerson : req.user.contactPersonId });
 
         if (!organization) return res.status(404).json({ message: "Organization not found" });
 

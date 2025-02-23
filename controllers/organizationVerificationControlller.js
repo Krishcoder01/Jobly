@@ -10,11 +10,17 @@ const contactPersonModel = require('../models/contactPerson_model');
 
 const verifyOrganizationController = async (req, res) => {
     try {
-        const organization = await organizationModel.findById({contactPerson : req.params.id});
+        console.log("aya");
+        console.log(req.params.id)
+        const organization = await organizationModel.findOne({contactPerson : req.params.id});
+        console.log(organization)
 
         if (!organization) return res.status(404).json({ message: "Organization not found" });
 
         await verificationDetailModel.findByIdAndUpdate(organization.verification, { isVerified: true });
+        await organizationModel.findByIdAndUpdate(organization._id, { suspended: true });
+
+        
         res.status(200).json({ message: "Organization verified successfully" });
     } catch (error) {
         res.status(500).json({ message: "Internal server error" });
