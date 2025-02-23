@@ -5,6 +5,9 @@
 const express = require('express');
 const app = express();
 const connectDB = require('./config/mongooseConfig');
+const dotenv = require('dotenv');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 
 
@@ -16,14 +19,23 @@ connectDB();
 // All Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+dotenv.config();
 
 
 
 // All Routes
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Welcome to Jobly Platform , I hope the journey will be amazing 🚀🚀');
 });
+
+
+//handels all authentication routes like SendOtp , verify otp , resend otp
+app.use('/auth' , authRoutes);  
+app.use('/api/user', userRoutes )
+
+
+
 
 // All Error Handlers
 
