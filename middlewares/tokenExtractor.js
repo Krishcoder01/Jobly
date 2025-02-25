@@ -21,6 +21,7 @@ const tokenExtractor=(req, res, next) => {
     try {
         // Verify token and attach decoded user data to request object
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        // console.log(decoded)
         req.user = decoded; // Attach decoded user info (e.g., user ID) to `req.user`
         next();
     } catch (error) {

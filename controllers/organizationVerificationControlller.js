@@ -15,7 +15,7 @@ const verifyOrganizationController = async (req, res) => {
         if (!organization) return res.status(404).json({ message: "Organization not found" });
 
         await verificationDetailModel.findByIdAndUpdate(organization.verification, { isVerified: true });
-        await organizationModel.findByIdAndUpdate(organization._id, { suspended: true });
+        await organizationModel.findByIdAndUpdate(organization._id, { suspended: false });
 
         
         res.status(200).json({ message: "Organization verified successfully" });

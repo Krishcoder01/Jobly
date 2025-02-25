@@ -121,10 +121,12 @@ const loginOrganization = async (req, res) => {
         const { email, password } = req.body;
         const contactPerson = await contactPersonModel.findOne({ email });
 
+
         if (!contactPerson) return res.status(400).json({ message: "Invalid credentials" });
 
         // Compare passwords
         const isMatch = await bcrypt.compare(password, contactPerson.password);
+        console.log(isMatch);
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
         // Generate JWT

@@ -9,6 +9,8 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const organisationRoutes = require('./routes/organizationRoutes');
+const internshipRoutes = require('./routes/internshipRoutes');
+const listingRoutes = require('./routes/listingRoutes');
 
 
 
@@ -33,8 +35,10 @@ app.get('/', (req, res) => {
 
 //handels all authentication routes like SendOtp , verify otp , resend otp
 app.use('/auth' , authRoutes);  
-app.use('/api/user', userRoutes )
-app.use('/api/organization/' , organisationRoutes)
+app.use('/api/user', userRoutes );
+app.use('/api/organization/' , organisationRoutes);
+app.use('/api/internship' , internshipRoutes );
+app.use('/api/listing' , listingRoutes);
 
 
 
