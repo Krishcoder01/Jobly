@@ -11,7 +11,8 @@ async function saveInternship(req, res) {
     try {
         
         const { internshipId } = req.body ;
-        const userId = req.user.id;
+        const userId = req.user.userId;
+        console.log(userId);
 
         const existingSave = await savedInternship_Model.findOne({ user: userId, internship: internshipId });
         if (existingSave) {
@@ -30,7 +31,7 @@ async function saveInternship(req, res) {
 
 async function unsaveInternship (req , res){
     try {
-        const userId = req.user.id;
+        const userId = req.user.userId;
         const internshipId = req.params.id;
 
         const result = await savedInternship_Model.findOneAndDelete({ user: userId, internship: internshipId });
@@ -48,8 +49,8 @@ async function unsaveInternship (req , res){
 
 async function getSavedInternship (req , res){
     try {
-        const userId = req.user.id;
-        const savedInternships = await savedInternship_Model.find({ user: userId }).populate('internship');
+        const userId = req.user.userId;
+        const savedInternships = await savedInternship_Model.find({ user: userId });
         res.status(200).json(savedInternships);
     } catch (error) {
         res.status(500).json({ error: error.message });

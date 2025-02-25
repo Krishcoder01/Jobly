@@ -30,21 +30,7 @@ module.exports = router ;
 
 
 
-// {
-//     "user": "65d7a5b0f5a9c2e8f0a12d34",
-//     "internship": "65d7a5b0f5a9c2e8f0a12d99",
-//     "resume": "https://example.com/resumes/user_resume.pdf",
-//     "answers": [
-//       {
-//         "questions": "Why do you want to join this internship?",
-//         "answers": "I am passionate about this field and want to gain experience."
-//       },
-//       {
-//         "questions": "Do you have any prior experience?",
-//         "answers": "Yes, I worked on similar projects in my college."
-//       }
-//     ]
-//   }
+
 
 // {
 //     "status": "Shortlisted"
